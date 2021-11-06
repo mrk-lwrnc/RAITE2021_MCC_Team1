@@ -36,7 +36,7 @@ php artisan key:generate
 Migrate database:
 
 ```
-php artisan migrate:fresh -seed
+php artisan migrate:fresh --seed
 ```
 
 Serve project:
