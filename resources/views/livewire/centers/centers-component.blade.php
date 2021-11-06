@@ -38,6 +38,16 @@
                         </div>
 
                         <div>
+                            <label>Opening Hours</label>
+                            <input type="time" wire:model.defer="form.opening_hours" required>
+                        </div>
+
+                        <div>
+                            <label>Closing Hours</label>
+                            <input type="time" wire:model.defer="form.closing_hours" required>
+                        </div>
+
+                        <div>
                             <label>Available Vaccines</label>
                             @foreach($vaccines as $vaccine)
                                 <div>
@@ -72,6 +82,10 @@
 
                             <div>
                             {{ $center->center_email }}
+                            </div>
+
+                            <div>
+                            From {{ $center->opening_hours }} to {{ $center->closing_hours }}
                             </div>
 
                             @foreach($center->availableVaccines as $vax)

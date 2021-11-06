@@ -19,6 +19,8 @@ class CreateCentersTable extends Migration
             $table->string('center_location');
             $table->string('center_contact_number');
             $table->string('center_email');
+            $table->string('opening_hours');
+            $table->string('closing_hours');
 
             $table->timestamps();
         });

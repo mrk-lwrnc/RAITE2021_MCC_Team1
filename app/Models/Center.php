@@ -14,6 +14,8 @@ class Center extends Model
         'center_location',
         'center_contact_number',
         'center_email',
+        'opening_hours',
+        'closing_hours',
     ];
 
     public function availableVaccines()

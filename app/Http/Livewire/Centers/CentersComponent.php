@@ -16,6 +16,8 @@ class CentersComponent extends Component
         'center_location' => '',
         'center_contact_number' => '',
         'center_email' => '',
+        'opening_hours' => '',
+        'closing_hours' => '',
     ];
 
     public $availableVaccines = [];
@@ -41,15 +43,24 @@ class CentersComponent extends Component
 
     public function addCenter()
     {
+        // dd($this->form);
         $this->availableVaccines = array_keys($this->availableVaccines);
 
         $this->validate();
+
+        $opening_hours = date_create($this->form['opening_hours']);
+        $opening_hours = date_format($opening_hours,"h:i a");
+
+        $closing_hours = date_create($this->form['closing_hours']);
+        $closing_hours = date_format($closing_hours,"h:i a");
 
         $center = Center::create([
             'center_name' => $this->form['center_name'],
             'center_location' => $this->form['center_location'],
             'center_contact_number' => $this->form['center_contact_number'],
             'center_email' => $this->form['center_email'],
+            'opening_hours' => $opening_hours,
+            'closing_hours' => $closing_hours,
         ]);
 
         foreach($this->availableVaccines as $key => $value){
