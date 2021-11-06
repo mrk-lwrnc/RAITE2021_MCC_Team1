@@ -98,6 +98,10 @@
                         </div>
                     @endforelse
                 </div>
+
+                <div>
+                    {{ $centers->links() }}
+                </div>
             </div>
         </div>
     </div>

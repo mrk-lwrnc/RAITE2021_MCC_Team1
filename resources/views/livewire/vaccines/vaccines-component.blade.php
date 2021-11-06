@@ -67,6 +67,10 @@
                     @empty
                     @endforelse
                 </div>
+
+                <div>
+                    {{ $vaccines->links() }}
+                </div>
             </div>
         </div>
     </div>

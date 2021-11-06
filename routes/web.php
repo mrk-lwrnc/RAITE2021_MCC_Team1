@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Centers\CentersComponent;
 use App\Http\Livewire\Vaccines\VaccinesComponent;
 
@@ -23,5 +24,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/user-management', UsersComponent::class)->name('user.management');
 Route::get('/center-management', CentersComponent::class)->name('center.management');
 Route::get('/vaccine-management', VaccinesComponent::class)->name('vaccine.management');

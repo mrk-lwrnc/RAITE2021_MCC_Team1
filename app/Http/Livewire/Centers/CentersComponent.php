@@ -6,9 +6,12 @@ use Livewire\Component;
 use App\Models\Center;
 use App\Models\Vaccine;
 use App\Models\AvailableVaccine;
+use Livewire\WithPagination;
 
 class CentersComponent extends Component
 {
+    use WithPagination;
+
     public $vaccines = [];
 
     public $form = [
