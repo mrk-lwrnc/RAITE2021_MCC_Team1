@@ -8,10 +8,10 @@ use App\Models\Vaccine;
 class VaccinesComponent extends Component
 {
     public $form = [
-        'vaccine_name',
-        'vaccine_manufacturer',
-        'vaccine_info',
-        'vaccine_restriction',
+        'vaccine_name' => '',
+        'vaccine_manufacturer' => '',
+        'vaccine_info' => '',
+        'vaccine_restriction' => '',
     ];
 
     protected $rules = [
@@ -30,6 +30,7 @@ class VaccinesComponent extends Component
 
     public function addVaccine()
     {
+        // dd($this->form);
         $this->validate();
 
         Vaccine::create([
@@ -38,5 +39,14 @@ class VaccinesComponent extends Component
             'vaccine_info' => $this->form['vaccine_info'],
             'vaccine_restriction' => $this->form['vaccine_restriction'],
         ]);
+
+        session()->flash('success', 'Vaccine has been sucessfully added!');
+
+        $this->form = [
+            'vaccine_name' => '',
+            'vaccine_manufacturer' => '',
+            'vaccine_info' => '',
+            'vaccine_restriction' => '',
+        ];
     }
 }
