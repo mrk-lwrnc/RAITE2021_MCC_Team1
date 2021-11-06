@@ -31,7 +31,7 @@ class CentersComponent extends Component
         'form.center_contact_number' => 'required|string',
         'form.center_email' => 'required|string|email',
     ];
-    
+
     public function mount()
     {
         $this->vaccines = Vaccine::select('id', 'vaccine_name')->get();
@@ -52,10 +52,10 @@ class CentersComponent extends Component
         $this->validate();
 
         $opening_hours = date_create($this->form['opening_hours']);
-        $opening_hours = date_format($opening_hours,"h:i a");
+        $opening_hours = date_format($opening_hours, "h:i a");
 
         $closing_hours = date_create($this->form['closing_hours']);
-        $closing_hours = date_format($closing_hours,"h:i a");
+        $closing_hours = date_format($closing_hours, "h:i a");
 
         $center = Center::create([
             'center_name' => $this->form['center_name'],
@@ -66,14 +66,14 @@ class CentersComponent extends Component
             'closing_hours' => $closing_hours,
         ]);
 
-        foreach($this->availableVaccines as $key => $value){
+        foreach ($this->availableVaccines as $key => $value) {
             AvailableVaccine::create([
                 'center_id' => $center->id,
                 'vaccine_name' => $value,
             ]);
         }
 
-        session()->flash('success', 'Center has been successfully added!');
+        $this->emit('centerAdded');
 
         $this->form = [
             'center_name' => '',

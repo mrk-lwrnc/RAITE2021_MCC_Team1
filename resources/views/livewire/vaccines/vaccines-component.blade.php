@@ -7,42 +7,42 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-3">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                 <div class="flex flex-col gap-5 mt-2">
                     <form wire:submit.prevent="addVaccine">
                         <div class="bg-gray-100 rounded-lg px-4 py-3">
                             <span class="font-bold text-lg text-gray-800">Add Vaccine</span>
                             <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2 mt-2">
-                                <x-jet-label value="Vaccine Name" />
+                                <x-jet-label value="Vaccine's Name" />
                                 <x-jet-input class="col-span-2" type="text" wire:model.defer="form.vaccine_name"
                                     required />
                             </div>
 
                             <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2">
-                                <x-jet-label value="Vaccine Manufacturer" />
+                                <x-jet-label value="Vaccine's Manufacturer" />
                                 <x-jet-input class="col-span-2" type="text" wire:model.defer="form.vaccine_manufacturer"
                                     required />
                             </div>
 
                             <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2">
-                                <x-jet-label value="Vaccine Information" />
+                                <x-jet-label value="Vaccine's Information" />
                                 <x-jet-input class="col-span-2" type="text" wire:model.defer="form.vaccine_info"
                                     required />
                             </div>
 
                             <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2">
-                                <x-jet-label value="Vaccine Restriction" />
+                                <x-jet-label value="Vaccine's Restriction" />
                                 <x-jet-input class="col-span-2" type="text" wire:model.defer="form.vaccine_restriction"
                                     required />
                             </div>
 
                             <div class="flex flex-col justify-end items-end mt-2">
-                                <x-jet-action-message class="mr-3" on="vaccineAdded">
-                                    Vaccine has been sucessfully added!
-                                </x-jet-action-message>
                                 <x-jet-button>
                                     Save
                                 </x-jet-button>
+                                <x-jet-action-message class="pt-2" on="vaccineAdded">
+                                    Vaccine has been sucessfully added!
+                                </x-jet-action-message>
                             </div>
                         </div>
                     </form>
@@ -88,12 +88,16 @@
                                 </td>
                             </tr>
                             @empty
+                            <div>
+                                There are no vaccines!
+                            </div>
                             @endforelse
                         </tbody>
                     </table>
+
                 </div>
 
-                <div>
+                <div class="p-2">
                     {{ $vaccines->links() }}
                 </div>
             </div>

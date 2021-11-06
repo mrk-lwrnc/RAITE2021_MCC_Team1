@@ -1,105 +1,136 @@
 <div>
     <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Center Management') }}
-    </h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Center Management') }}
+        </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                 <div class="flex flex-col gap-5">
-                    Add Center
                     <form wire:submit.prevent="addCenter">
-                        @if(session()->has('success'))
-                        <div>
-                            {{ session('success') }}
-                        </div>
-                        @endif
+                        <div class="bg-gray-100 rounded-lg px-4 py-3">
+                            <span class="font-bold text-lg text-gray-800">Add Center</span>
+                            <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2 mt-2">
+                                <x-jet-label value="Center's Name" />
+                                <x-jet-input class="col-span-2" type="text" wire:model.defer="form.center_name"
+                                    required />
+                            </div>
+                            <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2 mt-2">
+                                <x-jet-label value="Center's Location" />
+                                <x-jet-input class="col-span-2" type="text" wire:model.defer="form.center_location"
+                                    required />
+                            </div>
+                            <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2 mt-2">
+                                <x-jet-label value="Center's Contact Number" />
+                                <x-jet-input class="col-span-2" type="text"
+                                    wire:model.defer="form.center_contact_number" required />
+                            </div>
+                            <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2 mt-2">
+                                <x-jet-label value="Center's Email" />
+                                <x-jet-input class="col-span-2" type="email" wire:model.defer="form.center_email"
+                                    required />
+                            </div>
+                            <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2 mt-2">
+                                <x-jet-label value="Opening Hours" />
+                                <x-jet-input class="col-span-2" type="time" wire:model.defer="form.opening_hours"
+                                    required />
+                            </div>
+                            <div class="pl-2 grid grid-cols-3 gap-4 items-center pb-2 mt-2">
+                                <x-jet-label value="Closing Hours" />
+                                <x-jet-input class="col-span-2" type="time" wire:model.defer="form.closing_hours"
+                                    required />
+                            </div>
 
-                        <div>
-                            <label>Center Name</label>
-                            <input type="text" wire:model.defer="form.center_name" required>
-                        </div>
-
-                        <div>
-                            <label>Center Location</label>
-                            <input type="text" wire:model.defer="form.center_location" required>
-                        </div>
-
-                        <div>
-                            <label>Center Contact Number</label>
-                            <input type="text" wire:model.defer="form.center_contact_number" required>
-                        </div>
-
-                        <div>
-                            <label>Center Email</label>
-                            <input type="email" wire:model.defer="form.center_email" required>
-                        </div>
-
-                        <div>
-                            <label>Opening Hours</label>
-                            <input type="time" wire:model.defer="form.opening_hours" required>
-                        </div>
-
-                        <div>
-                            <label>Closing Hours</label>
-                            <input type="time" wire:model.defer="form.closing_hours" required>
-                        </div>
-
-                        <div>
-                            <label>Available Vaccines</label>
-                            @foreach($vaccines as $vaccine)
-                                <div>
-                                    <input type="checkbox" wire:model.defer="availableVaccines.{{ $vaccine->vaccine_name }}" wire:key="vaccine-{{ $loop->index }}">
-                                    <label>{{ $vaccine->vaccine_name}}</label>
+                            <div class="pl-2 pb-2 mt-2">
+                                <x-jet-label value="Available Vaccines" />
+                                @foreach($vaccines as $vaccine)
+                                <div class="flex flex-row py-1 px-2">
+                                    <x-jet-input class="col-span-2" type="checkbox"
+                                        wire:model.defer="availableVaccines.{{ $vaccine->vaccine_name }}"
+                                        wire:key="vaccine-{{ $loop->index }}" />
+                                    <x-jet-label class="ml-2" value="{{ $vaccine->vaccine_name }}" />
                                 </div>
-                            @endforeach
-                        </div>
+                                @endforeach
+                            </div>
 
-                        <div>
-                            <button type="submit">
-                                Save
-                            </button>
+                            <div class="flex flex-col justify-end items-end mt-2">
+                                <x-jet-button>
+                                    Save
+                                </x-jet-button>
+                                <x-jet-action-message class="pt-2" on="centerAdded">
+                                    Center has been sucessfully added!
+                                </x-jet-action-message>
+                            </div>
                         </div>
                     </form>
                 </div>
 
-                <div class="p-5">
-                    @forelse($centers as $center)
-                        <div class="flex flex-row gap-5">
+                <div class="block w-full overflow-x-auto mt-4">
+                    <div class="font-bold text-lg text-gray-800 px-4 pb-2">Centers</div>
+                    <table class="items-center bg-transparent w-full border-collapse">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                    Name</th>
+                                <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                    Location</th>
+                                <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                    Contact Number</th>
+                                <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                    Email</th>
+                                <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                    Opening and Closing Hours</th>
+                                <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                    Available Vaccines</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($centers as $center)
+                            <tr>
+                                <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    {{ $center->center_name }}
+                                </td>
+                                <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    {{ $center->center_location }}
+                                </td>
+                                <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    {{ $center->center_contact_number }}
+                                </td>
+                                <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    {{ $center->center_email }}
+                                </td>
+                                <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    From {{ $center->opening_hours }} to {{ $center->closing_hours }}
+                                </td>
+                                <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    @foreach($center->availableVaccines as $vax)
+                                    {{ $vax->vaccine_name }}
+                                    @endforeach
+                                </td>
+                            </tr>
+                            @empty
                             <div>
-                            {{ $center->center_name }}
+                                There are no centers!
                             </div>
-
-                            <div>
-                            {{ $center->center_location }}
-                            </div>
-
-                            <div>
-                            {{ $center->center_contact_number }}
-                            </div>
-
-                            <div>
-                            {{ $center->center_email }}
-                            </div>
-
-                            <div>
-                            From {{ $center->opening_hours }} to {{ $center->closing_hours }}
-                            </div>
-
-                            @foreach($center->availableVaccines as $vax)
-                                {{ $vax->vaccine_name }}
-                            @endforeach
-                        </div>   
-                    @empty
-                        <div>
-                            There are no centers!
-                        </div>
-                    @endforelse
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
-
-                <div>
+                <div class="p-2">
                     {{ $centers->links() }}
                 </div>
             </div>
