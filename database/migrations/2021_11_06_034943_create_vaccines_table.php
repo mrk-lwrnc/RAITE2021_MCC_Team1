@@ -16,6 +16,7 @@ class CreateVaccinesTable extends Migration
         Schema::create('vaccines', function (Blueprint $table) {
             $table->id();
             $table->string('vaccine_name');
+            $table->string('vaccine_manufacturer');
             $table->string('vaccine_info');
             $table->string('vaccine_restriction');
             $table->timestamps();

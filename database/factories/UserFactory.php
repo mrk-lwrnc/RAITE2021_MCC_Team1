@@ -52,6 +52,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
+                'name' => 'MCC Vax Default User',
                 'email' => 'user@user.com',
                 'password' => bcrypt('Raite2021'),
                 'role_id' => 2,
@@ -63,6 +64,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
+                'name' => 'MCC Vax Admin',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('Raite2021'),
                 'role_id' => 1,

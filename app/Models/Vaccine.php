@@ -11,6 +11,7 @@ class Vaccine extends Model
 
     protected $fillable = [
         'vaccine_name',
+        'vaccine_manufactuer',
         'vaccine_info',
         'vaccine_restriction',
     ];
