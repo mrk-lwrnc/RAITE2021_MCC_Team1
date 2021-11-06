@@ -49,12 +49,30 @@
                         </tbody>
                     </table>
 
-                    <div class="px-4">
-                        {{ $users->links() }}
+                    <div>
+                        {{ $user->status }}
+                    </div>
+
+                    <div>
+                        @if($user->has_appointment == 0)
+                        No appointment
+                        @else
+                        Has appointment
+                        @endif
                     </div>
                 </div>
+                @empty
+                <div>
+                    There are no users!
+                </div>
+                @endforelse
 
+                <div class="px-4">
+                    {{ $users->links() }}
+                </div>
             </div>
+
         </div>
     </div>
+</div>
 </div>
