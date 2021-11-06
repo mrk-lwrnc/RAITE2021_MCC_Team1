@@ -20,7 +20,11 @@
                             </div>
 
                             <div>
-                            {{ $user->status }}
+                            @if($user->has_appointment == 0)
+                                {{ $user->status}}
+                            @else
+                                On going first dose
+                            @endif
                             </div>
 
                             <div>
