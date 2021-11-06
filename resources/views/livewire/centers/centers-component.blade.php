@@ -54,6 +54,36 @@
                         </div>
                     </form>
                 </div>
+
+                <div class="p-5">
+                    @forelse($centers as $center)
+                        <div class="flex flex-row gap-5">
+                            <div>
+                            {{ $center->center_name }}
+                            </div>
+
+                            <div>
+                            {{ $center->center_location }}
+                            </div>
+
+                            <div>
+                            {{ $center->center_contact_number }}
+                            </div>
+
+                            <div>
+                            {{ $center->center_email }}
+                            </div>
+
+                            @foreach($center->availableVaccines as $vax)
+                                {{ $vax->vaccine_name }}
+                            @endforeach
+                        </div>   
+                    @empty
+                        <div>
+                            There are no centers!
+                        </div>
+                    @endforelse
+                </div>
             </div>
         </div>
     </div>

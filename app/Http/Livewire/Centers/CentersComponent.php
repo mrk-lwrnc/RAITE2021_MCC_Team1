@@ -34,7 +34,7 @@ class CentersComponent extends Component
 
     public function render()
     {
-        $centers = Center::paginate(10);
+        $centers = Center::with('availableVaccines')->paginate(10);
 
         return view('livewire.centers.centers-component', compact('centers'));
     }
