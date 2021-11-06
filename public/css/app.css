@@ -1102,6 +1102,12 @@ select {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
+.col-span-2 {
+	grid-column: span 2 / span 2;
+}
+.m-4 {
+	margin: 1rem;
+}
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
@@ -1178,6 +1184,9 @@ select {
 .-mt-px {
 	margin-top: -1px;
 }
+.mb-2 {
+	margin-bottom: 0.5rem;
+}
 .block {
 	display: block;
 }
@@ -1186,6 +1195,9 @@ select {
 }
 .inline-flex {
 	display: inline-flex;
+}
+.table {
+	display: table;
 }
 .grid {
 	display: grid;
@@ -1286,6 +1298,12 @@ select {
 .flex-shrink-0 {
 	flex-shrink: 0;
 }
+.table-auto {
+	table-layout: auto;
+}
+.border-collapse {
+	border-collapse: collapse;
+}
 .origin-top-left {
 	transform-origin: top left;
 }
@@ -1334,6 +1352,15 @@ select {
 .grid-cols-1 {
 	grid-template-columns: repeat(1, minmax(0, 1fr));
 }
+.grid-cols-2 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-3 {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-rows-2 {
+	grid-template-rows: repeat(2, minmax(0, 1fr));
+}
 .flex-row {
 	flex-direction: row;
 }
@@ -1342,6 +1369,9 @@ select {
 }
 .flex-wrap {
 	flex-wrap: wrap;
+}
+.items-end {
+	align-items: flex-end;
 }
 .items-center {
 	align-items: center;
@@ -1385,6 +1415,9 @@ select {
 .overflow-hidden {
 	overflow: hidden;
 }
+.overflow-x-auto {
+	overflow-x: auto;
+}
 .overflow-y-auto {
 	overflow-y: auto;
 }
@@ -1394,6 +1427,9 @@ select {
 .truncate {
 	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.whitespace-nowrap {
 	white-space: nowrap;
 }
 .rounded-md {
@@ -1441,6 +1477,18 @@ select {
 }
 .border-b {
 	border-bottom-width: 1px;
+}
+.border-l-0 {
+	border-left-width: 0px;
+}
+.border-r-0 {
+	border-right-width: 0px;
+}
+.border-t-0 {
+	border-top-width: 0px;
+}
+.border-solid {
+	border-style: solid;
 }
 .border-gray-300 {
 	--tw-border-opacity: 1;
@@ -1509,6 +1557,13 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
 }
+.bg-blue-200 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
+}
+.bg-transparent {
+	background-color: transparent;
+}
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
 }
@@ -1533,6 +1588,12 @@ select {
 }
 .p-5 {
 	padding: 1.25rem;
+}
+.p-3 {
+	padding: 0.75rem;
+}
+.p-4 {
+	padding: 1rem;
 }
 .px-4 {
 	padding-left: 1rem;
@@ -1623,6 +1684,12 @@ select {
 .pt-8 {
 	padding-top: 2rem;
 }
+.pb-2 {
+	padding-bottom: 0.5rem;
+}
+.pl-2 {
+	padding-left: 0.5rem;
+}
 .text-left {
 	text-align: left;
 }
@@ -1631,6 +1698,12 @@ select {
 }
 .text-right {
 	text-align: right;
+}
+.text-justify {
+	text-align: justify;
+}
+.align-middle {
+	vertical-align: middle;
 }
 .font-sans {
 	font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -1667,6 +1740,9 @@ select {
 }
 .font-semibold {
 	font-weight: 600;
+}
+.font-bold {
+	font-weight: 700;
 }
 .uppercase {
 	text-transform: uppercase;

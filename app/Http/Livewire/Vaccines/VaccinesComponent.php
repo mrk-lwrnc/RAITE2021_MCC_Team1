@@ -40,7 +40,8 @@ class VaccinesComponent extends Component
             'vaccine_restriction' => $this->form['vaccine_restriction'],
         ]);
 
-        session()->flash('success', 'Vaccine has been sucessfully added!');
+        // session()->flash('success', 'Vaccine has been sucessfully added!');
+        $this->emit('vaccineAdded');
 
         $this->form = [
             'vaccine_name' => '',
