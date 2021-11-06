@@ -8,8 +8,51 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-5">
+                <div class="flex flex-col gap-5">
                     Add Center
+                    <form wire:submit.prevent="addCenter">
+                        @if(session()->has('success'))
+                        <div>
+                            {{ session('success') }}
+                        </div>
+                        @endif
+
+                        <div>
+                            <label>Center Name</label>
+                            <input type="text" wire:model.defer="form.center_name" required>
+                        </div>
+
+                        <div>
+                            <label>Center Location</label>
+                            <input type="text" wire:model.defer="form.center_location" required>
+                        </div>
+
+                        <div>
+                            <label>Center Contact Number</label>
+                            <input type="text" wire:model.defer="form.center_contact_number" required>
+                        </div>
+
+                        <div>
+                            <label>Center Email</label>
+                            <input type="email" wire:model.defer="form.center_email" required>
+                        </div>
+
+                        <div>
+                            <label>Available Vaccines</label>
+                            @foreach($vaccines as $vaccine)
+                                <div>
+                                    <input type="checkbox" wire:model.defer="availableVaccines.{{ $vaccine->vaccine_name }}" wire:key="vaccine-{{ $loop->index }}">
+                                    <label>{{ $vaccine->vaccine_name}}</label>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div>
+                            <button type="submit">
+                                Save
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

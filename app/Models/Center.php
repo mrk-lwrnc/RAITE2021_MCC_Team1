@@ -15,4 +15,9 @@ class Center extends Model
         'center_contact_number',
         'center_email',
     ];
+
+    public function availableVaccines()
+    {
+        return $this->hasMany(AvailableVaccine::class);
+    }
 }
