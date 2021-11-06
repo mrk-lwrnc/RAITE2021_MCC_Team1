@@ -20,7 +20,15 @@
                             </div>
 
                             <div>
-                            {{ $user->user_contact_number }}
+                            {{ $user->status }}
+                            </div>
+
+                            <div>
+                            @if($user->has_appointment == 0)
+                                No appointment
+                            @else
+                                Has appointment
+                            @endif
                             </div>
                         </div>   
                     @empty

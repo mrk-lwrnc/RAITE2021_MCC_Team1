@@ -29,6 +29,9 @@
                         {{ __('Vaccine Management') }}
                     </x-jet-nav-link>
                     @else
+                    <x-jet-nav-link href="{{ route('appointments') }}" :active="request()->routeIs('appointments')">
+                        {{ __('Appointments') }}
+                    </x-jet-nav-link>
                     @endif
                 </div>
             </div>
