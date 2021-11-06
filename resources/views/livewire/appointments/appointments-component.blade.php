@@ -8,6 +8,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                @if(auth()->user()->has_appointment == 1)
+                <div class="p-5">
+                    You already have an appointment
+                </div>
+                @else    
                 <div class="p-5">
                     Create an appointment
                 </div>
@@ -40,6 +45,11 @@
                                         empty
                                     @endforelse
                                 </select>
+                            </div>
+
+                            <div>
+                                <label>Select Date</label>
+                                <input type="date" wire:model="date">
                             </div>
 
                             <div wire:click.prevent="next" class="p-5">
@@ -101,6 +111,16 @@
                                 Email: {{ auth()->user()->email }}
                             </div>
 
+                            <br>
+
+                            <h1>
+                                Date
+                            </h1>
+
+                            <div>
+                                {{ $this->date }}
+                            </div>
+
                             <div class="flex flex-col">
                                 <div class="p-5">
                                     <button type="submit">
@@ -111,6 +131,7 @@
                         @endif
                     </div>
                 </form>
+                @endif
             </div>
         </div>
     </div>

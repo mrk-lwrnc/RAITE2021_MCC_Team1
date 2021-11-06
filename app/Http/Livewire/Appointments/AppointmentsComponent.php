@@ -6,11 +6,18 @@ use Livewire\Component;
 use App\Models\Center;
 use App\Models\Vaccine;
 use App\Models\AvailableVaccine;
+use App\Models\Appointment;
+use App\Models\User;
 
 class AppointmentsComponent extends Component
 {
     public $center;
     public $vaccine;
+    public $date;
+
+    public $centerId;
+    public $vaccineId;
+
     public $availableVaccines;
     public $appointmentInfo = false;
 
@@ -35,6 +42,7 @@ class AppointmentsComponent extends Component
     protected $rules = [
         'center' => 'required|exists:centers,id',
         'vaccine' => 'required|exists:available_vaccines,vaccine_name',
+        'date' => 'required|after:today',
     ];
 
     public function mount()
@@ -62,8 +70,10 @@ class AppointmentsComponent extends Component
         $this->validate();
 
         $center = Center::where('id', $this->center)->first();
-
         $vaccine = Vaccine::where('vaccine_name', $this->vaccine)->first();
+
+        $this->centerId = $center->id;
+        $this->vaccineId = $vaccine->id;
 
         $this->centerForm = $center;
 
@@ -75,6 +85,42 @@ class AppointmentsComponent extends Component
     public function addAppointment()
     {
         $this->validate();
-        
+
+        Appointment::create([
+            'user_id' => auth()->user()->id,
+            'center_id' => $this->centerId,
+            'vaccine_id' => $this->vaccineId,
+            'date' => $this->date,
+        ]);
+
+        $user = User::where('id', auth()->user()->id)->first();
+
+        $user->has_appointment = 1;
+
+        $user->save();
+
+        $this->center = '';
+        $this->vaccine = '';
+        $this->date = '';
+
+        $this->centerForm = [
+            'center_name' => '',
+            'center_location' => '',
+            'center_contact_number' => '',
+            'center_email' => '',
+            'opening_hours' => '',
+            'closing_hours' => '',
+        ];
+
+        $this->vaccineForm = [
+            'vaccine_name' => '',
+            'vaccine_manufacturer' => '',
+            'vaccine_info' => '',
+            'vaccine_restriction' => '',
+        ];
+
+        $this->appointmentInfo = false;
+
+        $this->mount();
     }
 }
