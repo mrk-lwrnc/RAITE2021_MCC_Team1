@@ -17,6 +17,11 @@
                     </x-jet-nav-link>
 
                     @if(auth()->user()->role_id == 1)
+                    <x-jet-nav-link href="{{ route('user.management') }}"
+                        :active="request()->routeIs('user.management')">
+                        {{ __('User Management') }}
+                    </x-jet-nav-link>
+
                     <x-jet-nav-link href="{{ route('center.management') }}"
                         :active="request()->routeIs('center.management')">
                         {{ __('Center Management') }}
@@ -168,6 +173,10 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
             @if(auth()->user()->role_id == 1)
+            <x-jet-responsive-nav-link href="{{ route('user.management') }}"
+                :active="request()->routeIs('user.management')">
+                {{ __('User Management') }}
+            </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('center.management') }}"
                 :active="request()->routeIs('center.management')">
                 {{ __('Center Management') }}

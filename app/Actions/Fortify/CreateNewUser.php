@@ -30,6 +30,8 @@ class CreateNewUser implements CreatesNewUsers
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
+            'status' => 'Not yet vaccinated',
+            'has_appointment' => 0,
             'password' => Hash::make($input['password']),
             'role_id' => 2,
         ]);

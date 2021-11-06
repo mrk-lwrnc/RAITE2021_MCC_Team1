@@ -92,6 +92,10 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div>
+                    {{ $vaccines->links() }}
+                </div>
             </div>
         </div>
     </div>

@@ -4,9 +4,12 @@ namespace App\Http\Livewire\Vaccines;
 
 use Livewire\Component;
 use App\Models\Vaccine;
+use Livewire\WithPagination;
 
 class VaccinesComponent extends Component
 {
+    use WithPagination;
+
     public $form = [
         'vaccine_name' => '',
         'vaccine_manufacturer' => '',
